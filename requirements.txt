@@ -1,1 +1,11 @@
 Django<1.9
+boto
+django-storages
+
+# development
+django-extensions
+Werkzeug
+django-debug-toolbar
+
+# custom
+-e git+ssh://git@github.com/mliudev/django-cards.git@master#egg=django-cards

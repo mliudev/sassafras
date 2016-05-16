@@ -38,9 +38,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
+    'debug_toolbar',
     'bootstrap3',
     'sass_processor',
-    'trello_cards'
+    'trello_cards',
+    'storages'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -105,10 +108,23 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, PROJECT_NAME)
+STATIC_ROOT = os.path.join(BASE_DIR, PROJECT_NAME, STATIC_URL)
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'sass_processor.finders.CssFinder',
 )
+
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+
+# Django storages
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+AWS_STORAGE_BUCKET_NAME = 'django-sassafras-test'
+
+AWS_ACCESS_KEY = os.getenv('AWS_S3_ACCESS_KEY_ID')
+
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_S3_SECRET_ACCESS_KEY')
